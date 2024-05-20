@@ -1,0 +1,118 @@
+.wrapper {
+  width: 300px;
+  height: fit-content;
+  background: #ed95bd;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+  margin-left: 60%;
+}
+
+/* Title section */
+
+.wrapper .title-text {
+  align-items: center;
+  display: flex;
+  width: 200%;
+}
+
+.wrapper .title {
+  width: 50%;
+  font-size: 35px;
+  font-weight: 600;
+  text-align: center;
+  color: #c50058;
+}
+
+
+
+/* Form container */
+.form-container {
+  background-color: #e1c5d2;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 250px; /* Adjust width as needed */
+  margin: 0 auto; /* Center the container horizontally */
+}
+
+/* Form fields */
+.field {
+  margin-bottom: 15px;
+  display: flex; /* Use flexbox for label and input alignment */
+  align-items: center; /* Align labels and inputs vertically */
+}
+
+.field label {
+  flex: 0 0 100px; /* Fixed width for labels */
+  margin-right: 10px; /* Spacing between label and input */
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  flex: 1; /* Flexible width for input elements */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+input[type="password"],
+.select-box {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+}
+input[type="button"] {
+  width: 100%;
+  background-color: #c50058;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+input[type="button"]:hover {
+  background-color: #222;
+}
+/* Button styling */
+input[type="submit"] {
+  background-color: #c50058;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s ease-in-out;
+  margin-top: 15px; /* Add spacing between fields and button */
+  width: 100%; /* Make button full width */
+}
+
+input[type="submit"]:hover {
+  background-color: #222;
+}
+
+/* Error message styling */
+.error {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Success message styling (optional) */
+.success {
+  color: green;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+}
