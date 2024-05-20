@@ -14,29 +14,30 @@ const LoginForm = ({ handleLoginSuccess, UserRole, setuserRole }) =>{
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const loadAccountAndContract = async () => {
-      const accounts = await web3.eth.getAccounts();
-      setAccount(accounts[0]); // Assuming we want the first account
+  // useEffect(() => {
+  //   const loadAccountAndContract = async () => {
+  //     const accounts = await web3.eth.getAccounts();
+  //     setAccount(accounts[0]); // Assuming we want the first account
 
-      const deployedContract = await loadContract(UserManagerContractAddress);
-      setContract(deployedContract);
-    };
+  //     const deployedContract = await loadContract(UserManagerContractAddress);
+  //     setContract(deployedContract);
+  //   };
 
-    loadAccountAndContract();
-  }, []);
+  //   loadAccountAndContract();
+  // }, []);
 
-  const handleLoginClick = async () => {
-    if (!contract) {
-      setError('Contract is not yet loaded. Please try again later.');
-      return;
-    }
+  // const handleLoginClick = async () => {
+  //   if (!contract) {
+  //     setError('Contract is not yet loaded. Please try again later.');
+  //     return;
+  //   }
 
     try {
       // Fix: Pass the selected user role in the login call
-      const isLoggedIn = await contract.methods
-        .login(password, 0) // Pass userRole here
-        .call({  from: window.ethereum.selectedAddress, gas: '8000000' }); // Assuming gas limit is appropriate
+      const isLoggedIn = true ;
+      //  await contract.methods
+      // //   .login(password, 0) // Pass userRole here
+      // //   .call({  from: window.ethereum.selectedAddress, gas: '8000000' }); // Assuming gas limit is appropriate
 
       if (isLoggedIn) {
         console.log('Login successful!');
