@@ -3,7 +3,7 @@
   import { SiToll } from "react-icons/si";
   function Navbar({ handleNavItemClick, isLoggedIn, selectedNavItem, handleLogout }) {
     return (
-      <nav styles={"{background-color :#e2bfcf ;}"}>
+      <nav style={{ backgroundImage: 'linear-gradient(to right,  #77C9D4, #57BC90)' }}>
         <div className="icon"><SiToll /></div>
         <ul>
           <li

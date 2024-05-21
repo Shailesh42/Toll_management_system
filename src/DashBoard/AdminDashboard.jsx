@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import Sidebar from "../../components/sidebar/Sidebar";
+import Sidebar from "./sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import "./home.scss";
-import Dashboard from "./dashboard"; 
-import AddVehicle from "../Form/addVehicle";
-import TollForm from "../Form/AddToll";
-import HighwayPointForm from "../Form/AddHighwaypoint";
-import UserDetailsForm from "../Form/AddUserDetails";
-import HighwayForm from "../Form/AddHighway";
-import ChallanForm from "../Form/AddChallan";
+import Dashboard from "./Admin/userdetails"; 
+import AddVehicle from "./Form/addVehicle";
+import TollForm from "./Form/AddToll";
+import HighwayPointForm from "./Form/AddHighwaypoint";
+import UserDetailsForm from "./Form/AddUserDetails";
+import HighwayForm from "./Form/AddHighway";
+import ChallanForm from "./Form/AddChallan";
+
 const Admindashboard = () => {
   const [selectedComponent, setSelectedComponent] = useState("dashboard");
 

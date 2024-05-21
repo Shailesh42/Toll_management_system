@@ -26,18 +26,18 @@ const LoginForm = ({ handleLoginSuccess, UserRole, setuserRole }) =>{
   //   loadAccountAndContract();
   // }, []);
 
-  // const handleLoginClick = async () => {
-  //   if (!contract) {
-  //     setError('Contract is not yet loaded. Please try again later.');
-  //     return;
-  //   }
+  const handleLoginClick = async () => {
+    // if (!contract) {
+    //   setError('Contract is not yet loaded. Please try again later.');
+    //   return;
+    // }
 
     try {
       // Fix: Pass the selected user role in the login call
       const isLoggedIn = true ;
-      //  await contract.methods
-      // //   .login(password, 0) // Pass userRole here
-      // //   .call({  from: window.ethereum.selectedAddress, gas: '8000000' }); // Assuming gas limit is appropriate
+      // await contract.methods
+      //   .login(password, 0) // Pass userRole here
+      //   .call({  from: window.ethereum.selectedAddress, gas: '8000000' }); // Assuming gas limit is appropriate
 
       if (isLoggedIn) {
         console.log('Login successful!');
