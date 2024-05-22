@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Sidebar from "./sidebar/Admin_Sidebar";
 import "./home.scss";
-import Dashboard from "./Admin/userdetails"; 
 import AddVehicle from "./Admin_Employee/Form/addVehicle";
 import TollForm from "./Admin_Employee/Form/AddToll";
-
+import Userdetails from "./Admin/User";
+import PaymentList from "./Admin/PaymentList";
 const CustomerDashboard = () => {
   const [selectedComponent, setSelectedComponent] = useState("dashboard");
 
@@ -14,8 +14,8 @@ const CustomerDashboard = () => {
 
   const renderComponent = () => {
     switch (selectedComponent) {
-      case "dashboard":
-        return <Dashboard />;
+      case "User":
+        return <Userdetails />;
       case "tollList":
         return <TollForm />;
       case "ChallanList":
@@ -23,21 +23,21 @@ const CustomerDashboard = () => {
       case "vehicleList":
         return <AddVehicle />;
       case "PaymentList ":
-        return <Payments />;
-      case "profile":
-        return <Profile />;
-      case "logout":
-        return <Logout />;
+        return <PaymentList />;
+      // case "profile":
+      //   return <Profile />;
+      // case "logout":
+      //   return <Logout />;
       default:
         return null;
     }
   };
 
   return (
-    <div className="home">
+    <div >
       <Sidebar handleSidebarItemClick={handleSidebarItemClick} />
       <div className="homeContainer">
-        <Navbar />
+        
         <div className="listContainer">
           <div className="listTitle">
           {renderComponent()}

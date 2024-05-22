@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import "./home.scss";
-import Table from "../../components/table/Table";
+import "../home.scss";
+import Table from "../table/Table";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 
-import CustomWidget from "../../components/widget/Widget";
+import CustomWidget from "../widget/Widget";
 
 const UserList = () => {
   const [tableComponent, setTableComponent] = useState(null);

@@ -1,0 +1,70 @@
+{
+    "vehicles": [
+      {
+        "type": "Car",
+        "toll_rate_eth": 0.01,
+        "wallet_address": "0xYourEthWalletAddress1"
+      },
+      {
+        "type": "Truck",
+        "toll_rate_eth": 0.02,
+        "wallet_address": "0xYourEthWalletAddress2"
+      },
+      {
+        "type": "Motorcycle",
+        "toll_rate_eth": 0.005,
+        "wallet_address": "0xYourEthWalletAddress3"
+      },
+      {
+        "type": "SUV",
+        "toll_rate_eth": 0.015,
+        "wallet_address": "0xYourEthWalletAddress4"
+      },
+      {
+        "type": "Bus",
+        "toll_rate_eth": 0.03,
+        "wallet_address": "0xYourEthWalletAddress5"
+      },
+      {
+        "type": "Van",
+        "toll_rate_eth": 0.017,
+        "wallet_address": "0xYourEthWalletAddress6"
+      },
+      {
+        "type": "Electric Car",
+        "toll_rate_eth": 0.008,
+        "wallet_address": "0xYourEthWalletAddress7"
+      },
+      {
+        "type": "Bicycle",
+        "toll_rate_eth": 0.002,
+        "wallet_address": "0xYourEthWalletAddress8"
+      },
+      {
+        "type": "Pickup Truck",
+        "toll_rate_eth": 0.018,
+        "wallet_address": "0xYourEthWalletAddress9"
+      },
+      {
+        "type": "RV (Recreational Vehicle)",
+        "toll_rate_eth": 0.025,
+        "wallet_address": "0xYourEthWalletAddress10"
+      },
+      {
+        "type": "Minivan",
+        "toll_rate_eth": 0.016,
+        "wallet_address": "0xYourEthWalletAddress11"
+      },
+      {
+        "type": "Ambulance",
+        "toll_rate_eth": 0,
+        "wallet_address": "0xYourEthWalletAddress12" 
+      },
+      {
+        "type": "Limousine",
+        "toll_rate_eth": 0.02,
+        "wallet_address": "0xYourEthWalletAddress13"
+      }
+    ]
+  }
+  

@@ -1,5 +1,3 @@
-
-
 .App {
   display: flex;
   flex-direction: column;
@@ -13,7 +11,15 @@
   position: relative;
 }
 
-
+.app-navbar {
+  /* Styles for your navbar, including positioning */
+  /* Example: */
+  display: flex; /* Allow for horizontal layout */
+  justify-content: space-between; /* Align items horizontally */
+  padding: 1rem; /* Add some padding */
+  background-color: #333; /* Example background color */
+  color: #fff; /* Example text color */
+}
 
 
 

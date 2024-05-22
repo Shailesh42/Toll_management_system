@@ -10,7 +10,7 @@ import SignupForm from './home/Signup';
 import CustomerDashboard   from './DashBoard/CustomerDashboard';
 import EmployeeDashboard from './DashBoard/EmployeeDashboard';
 import AdminDashboard from './DashBoard/AdminDashboard';
-import { SiToll } from "react-icons/si"; 
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userRole, setUserRole] = useState('customer'); // Initial user role
