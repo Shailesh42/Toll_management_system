@@ -1,0 +1,33 @@
+.highway-list {
+    padding: 20px;
+  }
+  
+  .highway-list h2 {
+    margin-bottom: 10px;
+  }
+  
+  .highway-list ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .highway-list li {
+    cursor: pointer;
+    margin-bottom: 5px;
+  }
+  
+  .highway-list li:hover {
+    background-color: #f2f2f2;
+  }
+  
+  .city-list {
+    margin-left: 20px;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .city-list li {
+    margin-bottom: 2px;
+  }
+  

@@ -70,10 +70,10 @@ const Sidebar = ({ handleSidebarItemClick }) => {
               <span>Add Vehicle </span>
             </span>
           </li>   
-          <li onClick={() => handleSidebarItemClick("changeUserRole")}>
+          <li onClick={() => handleSidebarItemClick("highways")}>
             <span className="link">
               <ChangeRoleIcon className="icon" />
-              <span>Change User Role</span>
+              <span>highway list </span>
             </span>
           </li>
           <li onClick={() => handleSidebarItemClick("blockUnblockUser")}>

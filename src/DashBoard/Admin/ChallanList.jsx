@@ -6,4 +6,4 @@ function ChallanList() {
   )
 }
 
-export default  ChallanList ;
+export default  ChallanList ;    

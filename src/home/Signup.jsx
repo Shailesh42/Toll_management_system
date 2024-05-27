@@ -1,5 +1,5 @@
   import React, { useState, useEffect } from 'react';
-  import { web3, loadContract } from '../web3/web3';
+  import { getWeb3, loadContract } from '../web3/web3';
   import { useNavigate } from 'react-router-dom'; 
   import './form.css';
 
@@ -17,7 +17,7 @@
     
     useEffect(() => {
       const loadAccountAndContract = async () => {
-        const accounts = await web3.eth.getAccounts();
+        const accounts = await getWeb3.eth.getAccounts();
         setAccount(accounts[0]); // Assuming we want the first account
 
         const deployedContract = await loadContract(UserManagerContractAddress);

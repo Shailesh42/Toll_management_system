@@ -1,0 +1,87 @@
+.user-management {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #f5f5f5;
+  }
+  
+  .user-management h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .change-role,
+  .account-actions {
+    flex: 1;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  
+  .change-role h3,
+  .account-actions h3 {
+    margin-bottom: 10px;
+  }
+  
+  .change-role select,
+  .change-role input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+  
+  .change-role button {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .change-role button:hover {
+    background-color: #3e8e41;
+  }
+  
+  .account-actions ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .account-actions li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .account-actions button {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .account-actions button:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .account-actions button.disabled {
+    background-color: #ddd;
+    cursor: default;
+    opacity: 0.5;
+  }
+  

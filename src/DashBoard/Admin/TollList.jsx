@@ -1,7 +1,7 @@
 import React, { useState } from "react"; 
 
 const TollList =() => {
-   <div> hello toll </div>
+   <div> </div>
 };  
 
 export default TollList ;
