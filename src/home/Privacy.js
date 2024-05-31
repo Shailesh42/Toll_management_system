@@ -1,6 +1,6 @@
 const Privacy = () => {
     return (
-        <div className="privacy">
+        <div style={{ color: 'black' }}>
             <p>This Privacy Policy outlines how we collect, use, and protect your personal information when you use our website and services. We are committed to safeguarding your privacy and ensuring the security of your personal data.<br></br>
                 <ol>
                     <li>

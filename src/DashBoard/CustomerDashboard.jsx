@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Sidebar from "./sidebar/Admin_Sidebar";
+import Sidebar from "./sidebar/Employee_sidebar";
 import "./home.scss";
-import AddVehicle from "./Admin_Employee/Form/addVehicle";
-import TollForm from "./Admin_Employee/Form/AddToll";
+import AddVehicle from "../contracts/Form/addVehicle";
+import TollForm from "../contracts/Form/AddToll";
 import Userdetails from "./Admin/User";
 import PaymentList from "./Admin/PaymentList";
 const CustomerDashboard = () => {
@@ -22,12 +22,6 @@ const CustomerDashboard = () => {
         return <Challan /> ;
       case "vehicleList":
         return <AddVehicle />;
-      case "PaymentList ":
-        return <PaymentList />;
-      // case "profile":
-      //   return <Profile />;
-      // case "logout":
-      //   return <Logout />;
       default:
         return null;
     }

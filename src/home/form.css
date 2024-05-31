@@ -2,7 +2,7 @@
   display:contents;
   width: 300px;
   height: fit-content;
-  background: #ed95bd;
+  background: #bcf5ce;
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
@@ -13,23 +13,25 @@
 
 .wrapper .title-text {
   align-items: center;
+  margin: 10px ,10px, 10px 10px ;
   display: flex;
   width: 200%;
 }
 
 .wrapper .title {
+  margin-bottom: 20px  ;
   width: 50%;
   font-size: 35px;
   font-weight: 600;
   text-align: center;
-  color: #c50058;
+  color: #0f564e;
 }
 
 
 
 /* Form container */
 .form-container {
-  background-color: #e1c5d2;
+  background-color: #293e3093;
   border-radius: 5px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   padding: 30px;
@@ -71,7 +73,7 @@ input[type="password"],
 }
 input[type="button"] {
   width: 100%;
-  background-color: #c50058;
+  background-color: #0f564e;
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -86,7 +88,7 @@ input[type="button"]:hover {
 }
 /* Button styling */
 input[type="submit"] {
-  background-color: #c50058;
+  background-color: #0f564e;
   color: #fff;
   padding: 10px 20px;
   border: none;

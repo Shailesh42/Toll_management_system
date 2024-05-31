@@ -5,13 +5,13 @@ import "./home.scss";
 import UserList from "./Admin/userdetails";
 import TollList from "./Admin/TollList";
 import ChallanList from "./Admin/ChallanList";
-import AddVehicle from "./Admin_Employee/Form/addVehicle";
-import TollForm from "./Admin_Employee/Form/AddToll";
-import ChallanForm from "./Admin_Employee/Form/AddChallan";
+import AddVehicle from "../contracts/Form/addVehicle";
+import TollForm from "../contracts/Form/AddToll";
+import ChallanForm from "../contracts/Form/AddChallan";
 import VehicleList from "./Admin/VehicleList";
 import UserManagement from "./Admin/change_user";
 import HighwayList from "./Admin/HIghWayList"; // import the HighwayList component
-import { highwayData } from "../data/HighwayData";
+//import { highwayData } from "../data/HighwayData";
 
 const Admindashboard = () => {
   const [selectedComponent, setSelectedComponent] = useState("dashboard");
@@ -34,7 +34,7 @@ const Admindashboard = () => {
         return <UserList />;
       case "vehicleList":
         return <VehicleList />;
-      case "challanList":
+      case "ChallanList":
         return <ChallanList />;
       case "Add Toll":
         return <TollForm />;
@@ -44,8 +44,6 @@ const Admindashboard = () => {
         return <AddVehicle />;
       case "changeUserRole":
         return <UserManagement />;
-      case "highways":
-        return <HighwayList highways={highwayData} onHighwayClick={handleHighwayClick} />;
       default:
         return null;
     }

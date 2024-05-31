@@ -1,0 +1,1 @@
+export const UserManagerContractAddress = '0x90587e4797CB12660b49e082b122d854f6b1bd51';

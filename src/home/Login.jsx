@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { web3, loadContract } from '../web3/web3'; // Assuming web3 configuration is in a separate file
+import { web3, loadContract } from '../web3/web3';// Assuming web3 configuration is in a separate file
 import { useNavigate } from 'react-router-dom';
 import './form.css';
+import {UserManagerContractAddress} from '../web3/constvar';
 
-const UserManagerContractAddress = '0x570a426C90446c225de679467bc1d955D7b6AfFE';
-
-const LoginForm = ({ handleLoginSuccess, UserRole, setuserRole }) =>{
+const LoginForm = ({ handleLoginSuccess }) =>{
   const [account, setAccount] = useState(null);
   const [contract, setContract] = useState(null);
   const [password, setPassword] = useState('');
@@ -14,32 +13,36 @@ const LoginForm = ({ handleLoginSuccess, UserRole, setuserRole }) =>{
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const loadAccountAndContract = async () => {
-  //     const accounts = await web3.eth.getAccounts();
-  //     setAccount(accounts[0]); // Assuming we want the first account
+  useEffect(() => {
+    const initialize = async () => {
+      const accounts = await web3.eth.getAccounts();
+      setAccount(accounts[0]);
 
-  //     const deployedContract = await loadContract(UserManagerContractAddress);
-  //     setContract(deployedContract);
-  //   };
+      const contractInstance = await loadContract(UserManagerContractAddress);
+      setContract(contractInstance);
+    };
 
-  //   loadAccountAndContract();
-  // }, []);
+    initialize();
+  }, []);
+
+
 
   const handleLoginClick = async () => {
-    // if (!contract) {
-    //   setError('Contract is not yet loaded. Please try again later.');
-    //   return;
-    // }
-
+    if (!contract) {
+      setError('Contract is not yet loaded. Please try again later.');
+      return;
+    }
+    
+    
     try {
       // Fix: Pass the selected user role in the login call
-      const isLoggedIn = true ;
-      // await contract.methods
-      //   .login(password, 0) // Pass userRole here
-      //   .call({  from: window.ethereum.selectedAddress, gas: '8000000' }); // Assuming gas limit is appropriate
-
-      if (isLoggedIn) {
+      let  v ;
+       if(userRole === 'admin')  v = 0 ;
+       else  if(userRole ===  'employee') v = 1 ;
+       else v = 2 ;
+       const  receipt = await contract.methods.login(password, v).send({ from: account });// Assuming gas limit is appropriate
+       
+      if (receipt.events && receipt.events.UserLogin) {
         console.log('Login successful!');
         // Simulate setting state for demonstration (consider using a state management library like Redux or Context API)
         setIsLoggedIn(true);
@@ -61,10 +64,11 @@ const LoginForm = ({ handleLoginSuccess, UserRole, setuserRole }) =>{
 
   return (
     <div className="wrapper">
+      
+      <div className="form-container">
       <div className="title-text">
         <div className="title login">Login</div>
       </div>
-      <div className="form-container">
         <div className="form-inner">
           <form>
             <div className="field">

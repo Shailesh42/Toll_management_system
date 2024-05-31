@@ -5,15 +5,12 @@ contract UserManager {
     struct User {
         string name;
         string email;
-        uint balance ;
         string password;
         bool isActive;
         UserRole role;
-        string mobileNumber;
-        string homeAddress;
         uint256[] challanIds; // Array to efficiently track associated challan IDs
         uint256[] tollIds; 
-        uint256[] paymentIds; 
+        string[] vehicleIds ;
     }
     
     struct Toll {
@@ -25,7 +22,6 @@ contract UserManager {
         string highwayNo;
         address issuedby;
         uint payamount ;
-        bool isPaid ;
     }
 
     struct Vehicle { 
@@ -42,21 +38,15 @@ contract UserManager {
         bool isPaid ;
     }
    
-    struct Payment {
-        uint amount ;
-        uint time ;
-    }
-    
+    address[] public userAddresses;
     Toll[] public tolldetails ;
     Challan[] public challandetails ;
-    Payment[] public paymentdetails ;
-     
+   
     enum UserRole { Admin, Employee, Customer }
     
     mapping(address => User) public users;
     mapping(string  => Vehicle) public vehicledetails ;
     mapping(string => uint256) public categoryToRate;
-    address[] public userAddresses;
     
     uint public admincount ;
     uint public employeecount ;
@@ -65,7 +55,7 @@ contract UserManager {
     uint public blockedcount ;
     
 
-   modifier onlyAdminOrEmployee() {
+    modifier onlyAdminOrEmployee() {
         require(users[msg.sender].role == UserRole.Admin || users[msg.sender].role == UserRole.Employee , "Only admin or employee can call this function");
         _;
     }
@@ -79,7 +69,9 @@ contract UserManager {
         require(users[msg.sender].role == UserRole.Admin, "Only admin can call this function");
         _;
     }
-    event UserSignUp(address indexed userAddress, string name, string email,uint balance ,string password,bool isActive, UserRole role);
+
+
+    event UserSignUp(address indexed userAddress, string name, string email ,string password,bool isActive, UserRole role);
     event UserLogin( address indexed userAddress,string name, UserRole role);
     event UserRoleChanged(address indexed userAddress, UserRole oldRole, UserRole newRole);
     event UserBlocked(address indexed userAddress);
@@ -88,11 +80,11 @@ contract UserManager {
     event AllUserCounts(uint256 adminCount, uint256 employeeCount, uint256 customerCount, uint256 activeUserCount, uint256 blockedUserCount);
     event VehicleAdded(address indexed userAddress, string registrationNumber, string make, string model, string color);
     event ChallanAdded(address indexed userAddress, string description, uint256 amount);
-    event BalanceAdded(address indexed userAddresses, uint balance) ;
+    event BalanceAdded(address indexed userAddress, uint balance) ;
     event TollAdded(string vehicleNo, string startingPoint, string endingPoint, uint256 totalDistance, string highwayNo, address indexed issuedby,uint tollamount, bool ispaid);
     event PaymentAdded(uint256 amount, uint256 timestamp);
     event ChallanAdded(string vehicleNo, uint256 timestamp, uint256 challanPrice, string reason, address issuedby);
-
+    event VehicleAdded(string reg_no ,address indexed userAddress,string vehicletype);
 
     constructor() {
 
@@ -107,17 +99,16 @@ contract UserManager {
         categoryToRate["Emergency Vehicles"] = 0;
         categoryToRate["Specialty Vehicles"] = 5;
 
-        address userAddress = msg.sender;
+        address userAddress = msg.sender ;
         users[userAddress].name = "shailesh";
         users[userAddress].email ="shai@gmail.com";
-        users[userAddress].balance = 10000 ;
         users[userAddress].password = "1234";
         users[userAddress].isActive = true;
         users[userAddress].role = UserRole.Admin;
-        admincount++ ;
+         admincount++ ;
          activecount++;
          userAddresses.push(userAddress);
-        emit UserSignUp(userAddress,"shailesh","shai@gmail.com",10000 ,"1234",true, UserRole.Admin);
+        emit UserSignUp(userAddress,"shailesh","shai@gmail.com" ,"1234",true, UserRole.Admin);
     }
 
     function signUp(string memory _name, string memory _email, string memory _password) external {
@@ -127,11 +118,10 @@ contract UserManager {
         users[msg.sender].password = _password;
         users[msg.sender].isActive = true;
         users[msg.sender].role = UserRole.Customer;
-        users[msg.sender].balance = 10000;
         customercount++ ;
          activecount++;
          userAddresses.push(msg.sender);
-        emit UserSignUp(msg.sender, _name, _email,10000,_password,true, UserRole.Customer);
+        emit UserSignUp(msg.sender, _name, _email,_password,true, UserRole.Customer);
     }
      
     function login( string memory _password, UserRole _role) external returns (bool) {
@@ -165,21 +155,15 @@ contract UserManager {
             customercount++ ;
         }
         emit UserRoleChanged(_userAddress, oldRole, _newRole);
-     }
-    
-    function addBalance(address _userAddress , uint balance) external onlyAdmin {
-        users[_userAddress].balance += balance ;
-        emit BalanceAdded(_userAddress, balance);
-
     }
-     // Function to block a user
+    
     function blockUser(address _userAddress) external onlyAdminOrEmployee {
         require(users[_userAddress].isActive, "User is already blocked");
         users[_userAddress].isActive = false;
         activecount--;
         blockedcount++ ;
         emit UserBlocked(_userAddress);
-     }
+    }
 
     function unblockUser(address _userAddress) external onlyAdminOrEmployee {
         require(!users[_userAddress].isActive, "User is already active");
@@ -187,28 +171,55 @@ contract UserManager {
         activecount++ ;
         blockedcount--;  
         emit UserUnblocked(_userAddress);
-   }
-
-    function saveUserDetails(string memory _mobileNumber, string memory _homeAddress) external onlyUser {
-        users[msg.sender].mobileNumber = _mobileNumber ;
-        users[msg.sender].homeAddress = _homeAddress ;
     }
-
-    function viewUserDetails(address _userAddress) public view returns (string memory, string memory, bool, UserRole ) {
-        return (users[_userAddress].name, users[_userAddress].email, users[_userAddress].isActive, users[_userAddress].role);
-    } 
     
     function usercount() external onlyAdmin view returns (uint ,uint ,uint , uint ,uint,uint ){
        return  (activecount+blockedcount,admincount,employeecount,customercount,activecount, blockedcount );
     }         
-
-    
     
     function addvehicle(address _owner, string memory reg_no,  string memory vehicletype ) external onlyAdmin {
         vehicledetails[reg_no].ownerAddress  = _owner;
         vehicledetails[reg_no].vehicleType = vehicletype ;
+
+        users[_owner].vehicleIds.push(reg_no);
+        emit VehicleAdded(reg_no, _owner, vehicletype );
     }
     
+    function addToll(string memory reg_no,string memory startingPoint, string memory endingPoint, uint256 totalDistance,string memory highwayNo) external onlyAdminOrEmployee {
+        address owner= vehicledetails[reg_no].ownerAddress;
+        require(owner != address(0), "Invalid vehicle registration number"); // Check if vehicle exists
+        uint256 tollAmount = 2 * totalDistance;
+        address issuedby = msg.sender ;
+        // Create a new Toll object
+        Toll memory newToll = Toll(reg_no, block.timestamp, startingPoint, endingPoint, totalDistance, highwayNo, issuedby, tollAmount);
+
+        uint256 tollIndex = tolldetails.length;// Add the toll to the tolls array
+        tolldetails.push(newToll);
+        
+        users[owner].tollIds.push(tollIndex);
+
+        emit TollAdded(reg_no, startingPoint, endingPoint, totalDistance, highwayNo, issuedby, tollAmount,false);  
+    }
+    
+     
+    function addChallan(string memory reg_no, uint256 challanPrice, string memory reason ) public {
+        require(challanPrice > 0, "Challan price cannot be zero"); // Validate challan price
+        
+        address owner = vehicledetails[reg_no].ownerAddress;
+        require(owner != address(0), "Invalid vehicle registration number");
+        
+        uint index = challandetails.length ;
+        bool ispaid = true ;
+        address issuedby = msg.sender ;
+        // Create a new Challan object
+        Challan memory newChallan = Challan(reg_no,  block.timestamp, challanPrice, reason, issuedby ,ispaid);
+        challandetails.push(newChallan);
+        users[owner].challanIds.push(index);
+        // Add the challan to the challans array
+      
+        emit ChallanAdded(reg_no, block.timestamp, challanPrice, reason, issuedby);
+    }
+
     function getAllUserAddresses() public view returns (address[] memory) {
         return userAddresses;
     }
@@ -221,64 +232,11 @@ contract UserManager {
         return users[userAddress].tollIds;
     }
 
-    function getPaymentIds(address userAddress) public view returns (uint256[] memory) {
-        return users[userAddress].paymentIds;
+     function getvehicleIds(address userAddress) public view returns (string[] memory) {
+        return users[userAddress].vehicleIds;
     }
-     function addToll(string memory reg_no,string memory startingPoint, string memory endingPoint, uint256 totalDistance,string memory highwayNo, address  issuedby) external onlyAdminOrEmployee {
-        address owner= vehicledetails[reg_no].ownerAddress;
-        require(owner != address(0), "Invalid vehicle registration number"); // Check if vehicle exists
-        string memory cat = vehicledetails[reg_no].vehicleType ;/* logic to get category based on vehicle details (replace with implementation) */ // Implement logic to retrieve category
-        uint256 tollRate = categoryToRate[cat];
-        uint256 tollAmount = tollRate * totalDistance;
-
-        // Create a new Toll object
-        Toll memory newToll = Toll(reg_no, block.timestamp, startingPoint, endingPoint, totalDistance, highwayNo, issuedby, tollAmount,false);
-
-        uint256 tollIndex = tolldetails.length;// Add the toll to the tolls array
-        tolldetails.push(newToll);
-        
-        User storage user = users[owner]; // Get a reference to the user's storage slot
-        user.tollIds.push(tollIndex);
-
-        emit TollAdded(reg_no, startingPoint, endingPoint, totalDistance, highwayNo, issuedby, tollAmount,false);  
-    }
-    
-    function addPayment(uint256 amount ) public {
-        require( users[msg.sender].balance  >= amount  , "Payment amount cannot be zero");
-        users[msg.sender].balance -= amount ;
-        uint index = paymentdetails.length ;
-        users[msg.sender].paymentIds.push(index) ;
-        paymentdetails.push(Payment(amount, block.timestamp)) ;    
-
-        emit PaymentAdded(amount,block.timestamp);
-    }
-
-    function confirmpaid_toll(uint index ) public returns (bool){
-        tolldetails[index].isPaid = true ;
-        return true; 
-    }
-
-    function confirmpaid_challan(uint index ) public returns (bool){
-        challandetails[index].isPaid = true ;
-        return true; 
-    }
+ 
      
-    function addChallan(string memory reg_no, uint256 timestamp, uint256 challanPrice, string memory reason, address issuedby,bool ispaid) public {
-        require(challanPrice > 0, "Challan price cannot be zero"); // Validate challan price
-        
-        address owner = vehicledetails[reg_no].ownerAddress;
-        require(owner != address(0), "Invalid vehicle registration number");
-        User storage user = users[owner];
-        uint index = paymentdetails.length ;
-
-        user.paymentIds.push(index) ;
-        // Create a new Challan object
-        Challan memory newChallan = Challan(reg_no, timestamp, challanPrice, reason, issuedby,ispaid);
-     
-        // Add the challan to the challans array
-        challandetails.push(newChallan);
-        emit ChallanAdded(reg_no, timestamp, challanPrice, reason, issuedby);
-    }
     
      function getTollByIndex(uint256 index) public view returns (Toll memory) {
         require(index >= 0 && index < tolldetails.length, "Invalid toll index");
@@ -289,12 +247,10 @@ contract UserManager {
         require(index >= 0 && index < challandetails.length, "Invalid challan index");
         return challandetails[index];
     }
-
-    function getPaymentByIndex(uint256 index) public view returns (Payment memory) {
-        require(index >= 0 && index < paymentdetails.length, "Invalid payment index");
-        return paymentdetails[index];
+ 
+     function viewUserDetails(address _userAddress) public view returns (string memory, string memory, bool, UserRole ) {
+        return (users[_userAddress].name, users[_userAddress].email, users[_userAddress].isActive, users[_userAddress].role);
     }
-
-
+     
 }
 

@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import Sidebar from "./sidebar/Admin_Sidebar";
+import Sidebar from "./sidebar/Employee_sidebar";
 
 import "./home.scss";
 import Userdetails from "./Admin/User";
 import TollList  from "./Admin/TollList";
 import ChallanList from "./Admin/ChallanList";
-import AddVehicle from "./Admin_Employee/Form/addVehicle";
-import TollForm from "./Admin_Employee/Form/AddToll";
-import ChallanForm from "./Admin_Employee/Form/AddChallan";
-import UserDetailsForm from "./Admin_Employee/Form/AddUserDetails";
+import AddVehicle from "../contracts/Form/addVehicle";
+import TollForm from "../contracts/Form/AddToll";
+import ChallanForm from "../contracts/Form/AddChallan";
+import UserDetailsForm from "../contracts/Form/AddUserDetails";
 
 
 const EmployeeDashboard = () => {
@@ -36,10 +36,6 @@ const EmployeeDashboard = () => {
         return <ChallanForm />;
       case "Add Vehicle":
           return <AddVehicle/> ;
-      // case "profile":
-      //   return <Profile />;
-      // case "logout":
-      //   return <Logout />;
       default:
         return null;
     }

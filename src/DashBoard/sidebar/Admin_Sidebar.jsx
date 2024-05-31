@@ -79,28 +79,17 @@ const Sidebar = ({ handleSidebarItemClick }) => {
           <li onClick={() => handleSidebarItemClick("blockUnblockUser")}>
             <span className="link">
               <BlockIcon className="icon" />
-              <span>Block/Unblock User</span>
+              <span> User_management </span>
             </span>
           </li>
-          <li onClick={() => handleSidebarItemClick("settings")}>
-            <span className="link">
-              <SettingsApplicationsIcon className="icon" />
-              <span>Settings</span>
-            </span>
-          </li>
-          <p className="title">USER</p>
           <li onClick={() => handleSidebarItemClick("profile")}>
             <span className="link">
-              <AccountCircleOutlinedIcon className="icon" />
+              <SettingsApplicationsIcon className="icon" />
               <span>Profile</span>
             </span>
           </li>
-          <li onClick={() => handleSidebarItemClick("logout")}>
-            <span className="link">
-              <ExitToAppIcon className="icon" />
-              <span>Logout</span>
-            </span>
-          </li>
+          
+         
         </ul>
       </div>
     </div>

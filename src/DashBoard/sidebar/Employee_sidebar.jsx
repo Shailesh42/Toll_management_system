@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import "./sidebar.scss";
 import { NavLink } from "react-router-dom";
-import { DarkModeContext } from "../../context/darkModeContext";
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import StoreIcon from "@mui/icons-material/Store";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
@@ -10,16 +9,17 @@ import CreditCardIcon from "@mui/icons-material/CreditCard";
 import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import ChangeRoleIcon from '@mui/icons-material/ChangeCircle';
 
 
 const Sidebar = ({ handleSidebarItemClick }) => {
-  const { dispatch } = useContext(DarkModeContext);
+  
 
   return (
     <div className="sidebar">
       <div className="top">
         <NavLink to="/" style={{ textDecoration: "none" }}>
-          <span className="logo"><h2>Hello, Admin</h2></span>
+          <span className="logo"><h2>Hello, Employee </h2></span>
         </NavLink>
       </div>
       <hr />
@@ -38,40 +38,36 @@ const Sidebar = ({ handleSidebarItemClick }) => {
               <StoreIcon className="icon" />
               <span>Toll List</span>
             </span>
-          </li>
-          <li onClick={() => handleSidebarItemClick("userList")}>
-            <span className="link">
-              <PersonOutlineIcon className="icon" />
-              <span>User List</span>
-            </span>
-          </li>
-          <li onClick={() => handleSidebarItemClick("vehicleList")}>
-            <span className="link">
-              <LocalShippingIcon className="icon" />
-              <span>Vehicle List</span>
-            </span>
-          </li>
-        
-          <p className="title">SERVICES</p>
-         
-          <li onClick={() => handleSidebarItemClick("challan")}>
+          </li>         
+          <li onClick={() => handleSidebarItemClick("ChallanList")}>
             <span className="link">
               <NotificationsNoneIcon className="icon" />
-              <span>Challan</span>
+              <span>Challan List</span>
             </span>
           </li>
-          <li onClick={() => handleSidebarItemClick("settings")}>
+          <p className="title">SERVICES</p>
+          <li onClick={() => handleSidebarItemClick("Add Toll")}>
             <span className="link">
-              <SettingsApplicationsIcon className="icon" />
-              <span>Settings</span>
+              <CreditCardIcon className="icon" />
+              <span>Add Toll</span>
             </span>
           </li>
-          <p className="title">USER</p>
-         
-          <li onClick={() => handleSidebarItemClick("logout")}>
+          <li onClick={() => handleSidebarItemClick("Add challan")}>
             <span className="link">
-              <ExitToAppIcon className="icon" />
-              <span>Logout</span>
+              <NotificationsNoneIcon className="icon" />
+              <span>Add Challan</span>
+            </span>
+          </li>        
+          <li onClick={() => handleSidebarItemClick("Add Vehicle")}>
+            <span className="link">
+              <NotificationsNoneIcon className="icon" />
+              <span>Add Vehicle </span>
+            </span>
+          </li>   
+          <li onClick={() => handleSidebarItemClick("highways")}>
+            <span className="link">
+              <ChangeRoleIcon className="icon" />
+              <span>highway list </span>
             </span>
           </li>
         </ul>

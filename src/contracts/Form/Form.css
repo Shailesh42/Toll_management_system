@@ -1,0 +1,88 @@
+/* Global styles */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: linear-gradient(#141e30, #243b55);
+}
+
+/* Form container */
+.vehicle-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Form title */
+.vehicle-form h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+
+/* Input fields */
+.vehicle-form input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 15px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+/* Labels */
+.vehicle-form label {
+  display: block;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.vehicle-form textarea{
+  display: block;
+  margin-bottom: 5px;
+  color: #0b0606;
+  
+}
+/* Button styles */
+.vehicle-form button {
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 15px;
+}
+
+.vehicle-form button:hover {
+  background-color: #03e9f4;
+}
+
+/* Submit button (green) */
+.vehicle-form button.submit {
+  background-color: #2ecc71;
+}
+
+/* Cancel button (red) */
+.vehicle-form button.cancel {
+  background-color: #e74c3c;
+  margin-left: 10px;
+}

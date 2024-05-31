@@ -47,12 +47,6 @@ const Sidebar = ({ handleSidebarItemClick }) => {
               <span>Vehicle List</span>
             </span>
           </li>
-          <li onClick={() => handleSidebarItemClick("PaymentList")}>
-            <span className="link">
-              <CreditCardIcon className="icon" />
-              <span>Payment List </span>
-            </span>
-          </li>
         </ul>
       </div>
     </div>

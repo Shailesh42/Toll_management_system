@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate,Route,Routes } from 'react-router-dom';
 import './App.css';
 import Navbar from './home/Navbar';
-import Home from './home/Home';
 import AboutPage from './home/About';
 import FAQPage from './home/FAQs';
 import LoginForm from './home/Login'; // Assuming path is correct
@@ -10,11 +9,12 @@ import SignupForm from './home/Signup';
 import CustomerDashboard   from './DashBoard/CustomerDashboard';
 import EmployeeDashboard from './DashBoard/EmployeeDashboard';
 import AdminDashboard from './DashBoard/AdminDashboard';
+import Privacy from './home/Privacy';
 
-function App() {
+function App() {  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userRole, setUserRole] = useState('customer'); // Initial user role
-  const [selectedNavItem, setSelectedNavItem] = useState('home'); // New state for selected item
+  const [selectedNavItem, setSelectedNavItem] = useState('login'); // New state for selected item
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -80,7 +80,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar 
+      <Navbar
         handleNavItemClick={handleNavItemClick}
         isLoggedIn={isLoggedIn}
         selectedNavItem={selectedNavItem}
@@ -108,9 +108,9 @@ function App() {
                   />
                 ) : (
                   <>
-                    {selectedNavItem === 'home' && <Home />}
                     {selectedNavItem === 'about' && <AboutPage />}
                     {selectedNavItem === 'FAQ' && <FAQPage />}
+                    {selectedNavItem === 'Privacy' && <Privacy />}
                     {selectedNavItem === 'signup' && <SignupForm handleSignup={handleSignup} />}
                   </>
                 )
